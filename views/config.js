@@ -5,7 +5,7 @@
 $.ajax({
     type: 'get',
     dataType: 'json',
-    url: 'http://localhost:3000/get_config',
+    url: 'http://rabbit.neverstar.top/get_config',
     success: function (config) {
         console.log(config);
         wx.config({

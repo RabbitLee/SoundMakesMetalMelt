@@ -1,7 +1,7 @@
 /**
  * Created by zhaoangyouyou on 11/12/2016.
  */
-var timeOutEvent=0;
+var VoiceTime=0, startTime = 0, endTime = 0;
 var voice = {
     localId: '',
     serverId: ''
@@ -12,8 +12,8 @@ $(function(){
     $("#pushMe").on({
         touchstart: function(e){
             document.getElementById('pushMe').innerText = "发表言论";
-            //timeOutEvent = setInterval("longPress()",200);
 
+            startTime = new Date().getTime();
             wx.startRecord({
                 cancel: function () {
                     alert('用户拒绝授权录音');
@@ -38,6 +38,8 @@ $(function(){
 
         },
         touchend: function(e){
+
+            endTime = new Date().getTime();
             /*停止录音*/
             wx.stopRecord({
                 success: function (res) {
@@ -48,8 +50,9 @@ $(function(){
             document.getElementById('pushMe').innerText = "按我";
             e.preventDefault();
 
+            VoiceTime = endTime - startTime;
             /*上传录音到服务器*/
-            if (voice.localId == '') {
+            if (/*voice.localId*/ VoiceTime == 0 ) {
                 alert('请先使用 startRecord 接口录制一段声音');
                 return;
             }
@@ -60,13 +63,21 @@ $(function(){
                     voice.serverId = res.serverId;
                 }
             });
+
+
+            $.ajax({
+                type : "POST",  //提交方式
+                url : " ",//路径
+                data : {"voice_time":VoiceTime},//数据，这里使用的是Json格式进行传输
+                dataType: 'json';
+                success: function(data){
+                    alert('success');
+                }
+            });
+
+            VoiceTime = 0;
         }
     })
 
 });
 
-function longPress(){
-    //此处有接口声音
-    document.getElementById('text1').append("1");
-
-}

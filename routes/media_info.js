@@ -7,6 +7,10 @@ var router = express.Router();
 
 var voice_time = 0;
 
+router.get('/', function (req, res, next) {
+    res.sendStatus(200);
+})
+
 router.get('/write', function(req, res, next) {
     voice_time = req.query.voice_time;
     res.sendStatus(200);

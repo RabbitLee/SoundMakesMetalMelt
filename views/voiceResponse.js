@@ -48,8 +48,12 @@ $(function(){
                     voice.localId = res.localId;
                 }
             });
-            if(voice.localId = '')
-                voice.localId = 1;
+            if(voice.localId != '')
+            {
+                alert("success");
+
+            }
+
 
             document.getElementById('pushMe').innerText = "按我";
             e.preventDefault();

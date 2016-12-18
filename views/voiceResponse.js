@@ -46,15 +46,9 @@ $(function(){
             wx.stopRecord({
                 success: function (res) {
                     voice.localId = res.localId;
-                    alert(res.localID);
                 }
             });
             
-            
-
-            
-
-
             document.getElementById('pushMe').innerText = "按我";
             e.preventDefault();
 

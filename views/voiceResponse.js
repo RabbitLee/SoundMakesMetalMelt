@@ -56,24 +56,15 @@ $(function(){
                 alert('请先使用 startRecord 接口录制一段声音');
                 return;
             }
+
             wx.uploadVoice({
                 localId: voice.localId,
                 success: function (res) {
-                    //alert('上传语音成功，serverId 为' + res.serverId);
                     voice.serverId = res.serverId;
                 }
             });
 
-
-            $.ajax({
-                type : "POST",  //提交方式
-                url : " ",//路径
-                data : {"voice_time":VoiceTime},//数据，这里使用的是Json格式进行传输
-                dataType: 'json';
-                success: function(data){
-                    alert('success');
-                }
-            });
+            $.get('http://rabbit.neverstar.top/media_info/write?voice_time=' + VoiceTime);
 
             VoiceTime = 0;
         }

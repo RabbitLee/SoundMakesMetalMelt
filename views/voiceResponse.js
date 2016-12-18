@@ -40,13 +40,17 @@ $(function(){
         touchend: function(e){
 
             endTime = new Date().getTime();
+
+
             /*停止录音*/
             wx.stopRecord({
                 success: function (res) {
                     voice.localId = res.localId;
                 }
             });
-            //clearInterval(timeOutEvent);
+            if(voice.localId = '')
+                voice.localId = 1;
+
             document.getElementById('pushMe').innerText = "按我";
             e.preventDefault();
 

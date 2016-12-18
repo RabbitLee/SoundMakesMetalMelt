@@ -64,12 +64,17 @@ $(function(){
                 localId: voice.localId,
                 success: function (res) {
                     voice.serverId = res.serverId;
-                    alert("上传成功:)");
                 }
             });
 
             $.get('http://rabbit.neverstar.top/media_info/write?voice_time=' + VoiceTime);
-
+            if ( VoiceTime < 1 ) {
+                alert("时间过短，请重新录制!");
+                //return;
+            }
+            else{
+                alert("上传成功:)");
+            }
             VoiceTime = 0;
         }
     })

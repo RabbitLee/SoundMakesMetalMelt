@@ -50,10 +50,10 @@ $(function(){
             document.getElementById('pushMe').innerText = "按我";
             e.preventDefault();
 
-            VoiceTime = endTime - startTime;
+            VoiceTime = (endTime - startTime) / 1000;
             /*上传录音到服务器*/
-            if (/*voice.localId*/ VoiceTime == 0 ) {
-                alert('请先使用 startRecord 接口录制一段声音');
+            if (/*voice.localId*/ VoiceTime < 1 ) {
+                alert("时间过短，请重新录制!");
                 return;
             }
 

@@ -2,6 +2,8 @@
  * Created by zhaoangyouyou on 11/12/2016.
  */
 var VoiceTime=0, startTime = 0, endTime = 0;
+var timeInterval, timeOut;
+var flag = 0; //没按下
 var voice = {
     localId: '',
     serverId: ''
@@ -11,6 +13,7 @@ var voice = {
 $(function(){
     $("#pushMe").on({
         touchstart: function(e){
+            flag = 1;
             document.getElementById('pushMe').innerText = "发表言论";
 
             startTime = new Date().getTime();
@@ -38,33 +41,8 @@ $(function(){
 
         },
         touchend: function(e){
+            setTimeout("upload()", 1000);
 
-            endTime = new Date().getTime();
-
-
-            /*停止录音*/
-            wx.stopRecord({
-                success: function (res) {
-                    voice.localId = res.localId;
-                }
-            });
-            
-            document.getElementById('pushMe').innerText = "按我";
-            e.preventDefault();
-
-            VoiceTime = (endTime - startTime) / 1000;
-            /*上传录音到服务器*/
-            if (/*voice.localId*/ VoiceTime < 1 ) {
-                alert("时间过短，请重新录制!");
-                return;
-            }
-
-            wx.uploadVoice({
-                localId: voice.localId,
-                success: function (res) {
-                    voice.serverId = res.serverId;
-                }
-            });
 
             $.get('http://rabbit.neverstar.top/media_info/write?voice_time=' + VoiceTime);
 
@@ -74,3 +52,32 @@ $(function(){
 
 });
 
+function upload() {
+    endTime = new Date().getTime();
+    flag = 0;
+
+    /*停止录音*/
+    wx.stopRecord({
+        success: function (res) {
+            voice.localId = res.localId;
+        }
+    });
+
+    document.getElementById('pushMe').innerText = "按我";
+    e.preventDefault();
+
+    VoiceTime = (endTime - startTime) / 1000;
+    /*上传录音到服务器*/
+    if (/*voice.localId*/ VoiceTime < 1 ) {
+        alert("时间过短，请重新录制!");
+        return;
+    }
+
+    wx.uploadVoice({
+        localId: voice.localId,
+        success: function (res) {
+            voice.serverId = res.serverId;
+        }
+    });
+
+}

@@ -46,13 +46,13 @@ $(function(){
             wx.stopRecord({
                 success: function (res) {
                     voice.localId = res.localId;
+                    alert(res.localID);
                 }
             });
-            if(voice.localId != '')
-            {
-                alert("success");
+            
+            
 
-            }
+            
 
 
             document.getElementById('pushMe').innerText = "按我";

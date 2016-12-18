@@ -64,6 +64,7 @@ $(function(){
                 localId: voice.localId,
                 success: function (res) {
                     voice.serverId = res.serverId;
+                    alert("上传成功:)");
                 }
             });
 

@@ -48,7 +48,7 @@ body{
 .weui_dialog_alert {
     position:absolute;
 
-    margin: auto;
+    margin: auto 20%;
     top:20%;
     z-index:50;
     font-size: 100%;
@@ -56,7 +56,7 @@ body{
     text-align: center;
     width: 200px;
     height: 100px;
-
+    display: none;
     border-radius: 15px 15px 15px 15px;
     background-color: #fff;
     box-shadow: 0 0 8px 3px rgba(93, 71, 139, 0.3);

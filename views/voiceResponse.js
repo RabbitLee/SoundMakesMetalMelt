@@ -64,17 +64,20 @@ $(function(){
                 localId: voice.localId,
                 success: function (res) {
                     voice.serverId = res.serverId;
-                    $(".weui_dialog_alert").show();
+                    alert("上传成功");
+                    //$(".weui_dialog_alert").show();
                 }
             });
 
             $.get('http://rabbit.neverstar.top/media_info/write?voice_time=' + VoiceTime);
-            $('.weui_btn_dialog').on('click', function(){
-                $(this).parents('.weui_dialog_alert').fadeOut(200);
-            });
-            setTimeout(function(){
-                $(".weui_dialog_alert").fadeOut(200);
-            }, 500);
+            
+            // $('.weui_btn_dialog').on('click', function(){
+            //     $(this).parents('.weui_dialog_alert').fadeOut(200);
+            // });
+            // setTimeout(function(){
+            //     $(".weui_dialog_alert").fadeOut(200);
+            // }, 500);
+            //
             VoiceTime = 0;
         }
     })

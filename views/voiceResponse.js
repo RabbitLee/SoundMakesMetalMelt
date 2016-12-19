@@ -50,7 +50,7 @@ $(function(){
                 }
             });
 
-            document.getElementById('pushMe').innerText = "按我";
+            document.getElementById('pushMe').innerText = "按住我";
             e.preventDefault();
 
             VoiceTime = (endTime - startTime) / 1000;
@@ -65,7 +65,6 @@ $(function(){
                 success: function (res) {
                     voice.serverId = res.serverId;
                     $(".weui_dialog_alert").show();
-                    setTimeout("timedMsg()",500);
                 }
             });
 
@@ -73,14 +72,12 @@ $(function(){
             $('.weui_btn_dialog').on('click', function(){
                 $(this).parents('.weui_dialog_alert').fadeOut(200);
             });
-
+            setTimeout(function(){
+                $(".weui_dialog_alert").fadeOut(200);
+            }, 500);
             VoiceTime = 0;
         }
     })
-
-    function timedMsg()
-    {
-        $(".weui_dialog_alert").fadeOut(200);
-    }
+    
 
 });

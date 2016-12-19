@@ -65,7 +65,7 @@ $(function(){
                 success: function (res) {
                     voice.serverId = res.serverId;
                     $(".weui_dialog_alert").show();
-                    var t = setTimeout("timedMsg()",1000);
+                    setTimeout("timedMsg()",500);
                 }
             });
 

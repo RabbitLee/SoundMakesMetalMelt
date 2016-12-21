@@ -64,7 +64,7 @@ $(function(){
                 localId: voice.localId,
                 success: function (res) {
                     voice.serverId = res.serverId;
-                    alert("上传成功");
+                    alert("您的言论： " + VoiceTime + "秒");
                     //$(".weui_dialog_alert").show();
                 }
             });

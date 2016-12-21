@@ -64,6 +64,7 @@ $(function(){
                 localId: voice.localId,
                 success: function (res) {
                     voice.serverId = res.serverId;
+                    VoiceTime = (endTime - startTime) / 1000;
                     alert("您的言论： " + VoiceTime + "秒");
                     //$(".weui_dialog_alert").show();
                 }
